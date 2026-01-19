@@ -258,6 +258,24 @@
         <div class="main-grid">
             <!-- Sidebar -->
             <div class="sidebar">
+                <!-- Student Name -->
+                <div class="card">
+                    <h3>👤 Your Name</h3>
+                    <input 
+                        type="text" 
+                        id="student-name-input"
+                        placeholder="Enter your name..."
+                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; margin-bottom: 10px;"
+                    />
+                    <button 
+                        onclick="saveStudentName()"
+                        style="width: 100%; padding: 12px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold;"
+                    >
+                        Save Name
+                    </button>
+                    <p id="name-saved-msg" style="margin-top: 10px; font-size: 0.9em; color: #667eea; display: none;">✓ Name saved!</p>
+                </div>
+                
                 <!-- Level Selection -->
                 <div class="card">
                     <h3>📊 Level</h3>
@@ -333,13 +351,14 @@
 
     <script>
         // Configuration
-        const BACKEND_URL = 'http://localhost:5000'; // Change this to your deployed URL later
+        const BACKEND_URL = 'https://arabic-tutor-backend-6stj.onrender.com'; // Change this to your deployed URL later
         
         // State
         let messages = [];
         let currentLevel = 'beginner';
         let currentTopic = 'greetings';
         let isLoading = false;
+        let studentName = localStorage.getItem('studentName') || '';
         
         const lessonTopics = {
             greetings: { title: '👋 التحيات (Greetings)', emoji: '👋' },
@@ -352,21 +371,48 @@
         
         function getSystemPrompt() {
             const prompts = {
-                beginner: `You are Mohammed's Arabic language tutor specializing in Saudi dialect. The student is a beginner.
+                beginner: `You are an Arabic language tutor specializing in Saudi dialect. The student is a beginner${studentName ? ` named ${studentName}` : ''}.
 
-Your role:
-- Teach practical, everyday Saudi Arabic phrases
-- Use both Arabic script and transliteration (in parentheses)
-- Keep responses simple and encouraging
-- Correct mistakes gently and explain why
-- Provide cultural context when relevant
-- Focus on conversational fluency over perfect grammar
+ABSOLUTE FORMATTING REQUIREMENTS - YOU MUST FOLLOW THESE:
+1. ALWAYS put each Arabic phrase on its own line
+2. ALWAYS add a blank line between different phrases
+3. ALWAYS use this exact format:
+
+Arabic word (transliteration)
+One sentence explanation
+
+4. Teach ONLY 2-3 phrases per message, never more
+5. After teaching, ask ONE simple question
 
 Current topic: ${lessonTopics[currentTopic].title}
 
-Start each conversation naturally, introduce 2-3 key phrases, then practice with the student.`,
+CORRECT EXAMPLE:
+
+مرحباً! (Marhaban!) Hello!
+
+Here are 3 essential greetings:
+
+السلام عليكم (As-salamu alaykum)
+This means "Peace be upon you" - the most common greeting.
+
+وعليكم السلام (Wa alaykum as-salam)
+This is the response, meaning "And peace be upon you too."
+
+كيف حالك؟ (Kayf halak?)
+This means "How are you?" when speaking to a male.
+
+Try greeting me! Type one of these phrases.
+
+TEACHING RULES:
+- Use simple, clear English
+- Be warm and encouraging
+- Give practical examples
+- Focus on what Saudis actually say
+- Keep it conversational and fun`,
                 
-                intermediate: `You are Mohammed's Arabic language tutor specializing in Saudi dialect. The student is intermediate level.
+                intermediate: `You are an Arabic language tutor specializing in Saudi dialect. The student is intermediate level${studentName ? ` and their name is ${studentName}` : ''}.
+
+FORMATTING: Use clear line breaks, simple numbering, and keep explanations concise.
 
 Your role:
 - Have natural conversations in Saudi Arabic
@@ -378,7 +424,7 @@ Your role:
 
 Current topic: ${lessonTopics[currentTopic].title}`,
                 
-                advanced: `You are Mohammed's Arabic language tutor specializing in Saudi dialect. The student is advanced.
+                advanced: `You are an Arabic language tutor specializing in Saudi dialect. The student is advanced${studentName ? ` and their name is ${studentName}` : ''}.
 
 Your role:
 - Conduct conversations primarily in Arabic
@@ -500,6 +546,30 @@ Current topic: ${lessonTopics[currentTopic].title}`
                 sendMessage();
             }
         }
+        
+        function saveStudentName() {
+            const nameInput = document.getElementById('student-name-input');
+            const name = nameInput.value.trim();
+            
+            if (name) {
+                studentName = name;
+                localStorage.setItem('studentName', name);
+                
+                // Show confirmation message
+                const msgElement = document.getElementById('name-saved-msg');
+                msgElement.style.display = 'block';
+                setTimeout(() => {
+                    msgElement.style.display = 'none';
+                }, 2000);
+            }
+        }
+        
+        // Load saved name on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            if (studentName) {
+                document.getElementById('student-name-input').value = studentName;
+            }
+        });
         
         // Level selection
         document.querySelectorAll('.level-button').forEach(button => {
