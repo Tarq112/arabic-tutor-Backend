@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Saudi Arabic with AI | تعلم العربية السعودية</title>
+    <meta name="description" content="Master Saudi Arabic dialect with AI-powered conversations. Learn from a native speaker anytime, anywhere. Get instant feedback 24/7.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .testimonial-author {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        /* Pricing */
+        .pricing {
+            background: #f8f9fa;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .price {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .price-period {
+            font-size: 0.4em;
+            color: #666;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* About Teacher */
+        .about-teacher {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        
+        .teacher-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            margin: 0 auto;
+        }
+        
+        .teacher-bio h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .about-teacher {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>🇸🇦 تعلم العربية السعودية</h1>
+        <h1>Learn Saudi Arabic with AI</h1>
+        <p>Master the Saudi dialect through natural conversations with your AI tutor</p>
+        <p>Practice anytime, get instant feedback, learn faster</p>
+        <a href="#pricing" class="cta-button">Start Learning Today</a>
+        <p style="margin-top: 20px; font-size: 0.9em;">✨ First 20 students get 50% off lifetime!</p>
+    </section>
+    
+    <!-- Why Choose Us -->
+    <section class="container">
+        <h2>Why Learn With Us?</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered Learning</h3>
+                <p>Practice with an intelligent tutor that adapts to your level and gives instant feedback on your Arabic</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🕌</div>
+                <h3>Authentic Saudi Dialect</h3>
+                <p>Learn the real Arabic spoken in Saudi Arabia, not textbook Modern Standard Arabic</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⏰</div>
+                <h3>Learn Anytime, Anywhere</h3>
+                <p>Practice 24/7 from your phone or computer. No scheduling, no waiting for tutors</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Practical Conversations</h3>
+                <p>Focus on real-life situations: shopping, dining, directions, family, business</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h3>Track Your Progress</h3>
+                <p>See your improvement over time with conversation analytics and skill tracking</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎓</div>
+                <h3>Native Speaker Designed</h3>
+                <p>Created by Mohammed, a Saudi native and experienced language educator</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Perfect For -->
+    <section class="container" style="background: #f8f9fa; margin: 0; padding: 60px 20px; max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2>Perfect For...</h2>
+            <div class="features">
+                <div class="feature" style="background: white;">
+                    <div class="feature-icon">✈️</div>
+                    <h3>Travelers to Saudi Arabia</h3>
+                    <p>Going for Hajj, Umrah, or vacation? Learn essential phrases before you go</p>
+                </div>
+                <div class="feature" style="background: white;">
+                    <div class="feature-icon">💼</div>
+                    <h3>Business Professionals</h3>
+                    <p>Working with Saudi clients or relocating? Master business Arabic quickly</p>
+                </div>
+                <div class="feature" style="background: white;">
+                    <div class="feature-icon">❤️</div>
+                    <h3>Language Enthusiasts</h3>
+                    <p>Passionate about Arabic? Learn the most widely spoken dialect in the Gulf</p>
+                </div>
+                <div class="feature" style="background: white;">
+                    <div class="feature-icon">🏥</div>
+                    <h3>Healthcare Workers</h3>
+                    <p>Moving to work in Saudi hospitals? Learn medical Arabic essentials</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="container">
+        <h2>How It Works</h2>
+        <div class="features">
+            <div class="feature">
+                <h3 style="color: #667eea; font-size: 3em;">1</h3>
+                <h3>Choose Your Level</h3>
+                <p>Select beginner, intermediate, or advanced based on your current skills</p>
+            </div>
+            <div class="feature">
+                <h3 style="color: #667eea; font-size: 3em;">2</h3>
+                <h3>Pick a Topic</h3>
+                <p>Start with greetings, shopping, family, food, or any topic you're interested in</p>
+            </div>
+            <div class="feature">
+                <h3 style="color: #667eea; font-size: 3em;">3</h3>
+                <h3>Have Real Conversations</h3>
+                <p>Chat with your AI tutor in Arabic and English. Get corrections and explanations instantly</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="container" style="background: #f8f9fa; margin: 0; padding: 60px 20px; max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2>What Students Say</h2>
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "I'm traveling to Riyadh next month and needed to learn basics fast. This app is incredible - I'm having actual conversations in Saudi Arabic after just 2 weeks!"
+                </div>
+                <div class="testimonial-author">- Sarah M., Business Consultant</div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "As someone who learned MSA in university, learning Saudi dialect was confusing until I found this. The AI explains the differences perfectly and I can practice anytime."
+                </div>
+                <div class="testimonial-author">- Ahmed K., Graduate Student</div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "Better than traditional tutors because I can practice at 11pm after work. The instant feedback helps me improve much faster than classes."
+                </div>
+                <div class="testimonial-author">- James L., Healthcare Worker</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About the Teacher -->
+    <section class="container">
+        <h2>Meet Your Teacher</h2>
+        <div class="about-teacher">
+            <div class="teacher-image">👨‍🏫</div>
+            <div class="teacher-bio">
+                <h3>Mohammed - Native Saudi Speaker & Educator</h3>
+                <p>
+                    مرحباً! I'm Mohammed from Saudi Arabia, currently pursuing my PhD at Imperial College London. 
+                    With 7 years of professional experience as a medical microbiologist and trainer, I understand 
+                    how adults learn best.
+                </p>
+                <p>
+                    I created this app because traditional Arabic courses focus on formal Arabic, but when you 
+                    actually visit Saudi Arabia, people speak a completely different dialect! I wanted to bridge 
+                    that gap and help people learn the Arabic that's actually spoken in everyday life.
+                </p>
+                <p>
+                    Through AI technology combined with my native fluency and teaching experience, you'll learn 
+                    practical Saudi Arabic faster than traditional methods.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section class="pricing" id="pricing" style="margin: 0; padding: 60px 20px; max-width: 100%;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0;">
+            <h2>Simple Pricing</h2>
+            <p class="section-subtitle">Choose the plan that works for you</p>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Free Trial</h3>
+                    <div class="price">
+                        £0
+                        <span class="price-period">forever</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>10 AI conversations per day</li>
+                        <li>All 6 lesson topics</li>
+                        <li>3 difficulty levels</li>
+                        <li>Basic progress tracking</li>
+                    </ul>
+                    <a href="mailto:mohammed@example.com?subject=Free Trial Signup" class="cta-button" style="background: #667eea; color: white; padding: 12px 30px; font-size: 1em;">Start Free</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div style="background: #667eea; color: white; padding: 10px; margin: -40px -40px 20px -40px; border-radius: 15px 15px 0 0;">
+                        ⭐ MOST POPULAR
+                    </div>
+                    <h3>Premium</h3>
+                    <div class="price">
+                        £9.99
+                        <span class="price-period">per month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Unlimited AI conversations</li>
+                        <li>All lesson topics & levels</li>
+                        <li>Advanced progress analytics</li>
+                        <li>Conversation history saved</li>
+                        <li>Priority support</li>
+                        <li>New features first</li>
+                    </ul>
+                    <a href="mailto:mohammed@example.com?subject=Premium Signup" class="cta-button" style="background: #667eea; color: white; padding: 12px 30px; font-size: 1em;">Get Premium</a>
+                    <p style="margin-top: 15px; color: #667eea; font-weight: bold;">
+                        🎉 First 20 users: £4.99/month FOREVER
+                    </p>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>1-on-1 Tutoring</h3>
+                    <div class="price">
+                        £15
+                        <span class="price-period">per hour</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Personal live sessions with Mohammed</li>
+                        <li>Customized learning plan</li>
+                        <li>Speaking & pronunciation practice</li>
+                        <li>Cultural insights & tips</li>
+                        <li>Homework & assignments</li>
+                    </ul>
+                    <a href="mailto:mohammed@example.com?subject=1-on-1 Tutoring Inquiry" class="cta-button" style="background: #667eea; color: white; padding: 12px 30px; font-size: 1em;">Book Session</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="container">
+        <h2>Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">What's the difference between Saudi Arabic and standard Arabic?</div>
+            <div>Saudi Arabic (الدارجة السعودية) is the dialect spoken in everyday conversations in Saudi Arabia. 
+            Modern Standard Arabic (MSA) is more formal and used in writing and formal settings. If you want to 
+            actually communicate with Saudis in real life, you need to learn the dialect!</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Do I need to know any Arabic to start?</div>
+            <div>Not at all! We have a beginner level that starts from zero. The AI tutor will introduce you to 
+            the Arabic alphabet and basic phrases, then build up from there.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How is this different from other language apps?</div>
+            <div>Most apps teach Modern Standard Arabic or use pre-recorded lessons. We use AI to have real, 
+            adaptive conversations in Saudi dialect. It's like having a native Saudi friend available 24/7 to 
+            practice with!</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Can I cancel anytime?</div>
+            <div>Yes! Premium is month-to-month with no contracts. Cancel anytime from your account settings.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Will this work on my phone?</div>
+            <div>Yes! The app works on any device with a web browser - phones, tablets, laptops, desktops.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What topics can I learn?</div>
+            <div>Currently: greetings, shopping, family, food, directions, and free conversation. We're adding 
+            more topics based on student feedback, including business Arabic, medical Arabic, and travel essentials.</div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center;">
+        <h2 style="color: white; margin-bottom: 20px;">Ready to Start Speaking Saudi Arabic?</h2>
+        <p style="font-size: 1.2em; margin-bottom: 30px;">
+            Join students from around the world learning authentic Arabic
+        </p>
+        <a href="#pricing" class="cta-button">Start Learning Now</a>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+            No credit card required for free trial • Cancel anytime • Money-back guarantee
+        </p>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>تعلم العربية السعودية | Learn Saudi Arabic with AI</p>
+        <p>Created by Mohammed | Imperial College London PhD Researcher</p>
+        <p style="margin-top: 20px;">
+            📧 Email: mohammed@example.com | 
+            🌐 Based in London, UK | 
+            🇸🇦 Native Saudi Speaker
+        </p>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+            © 2026 All Rights Reserved | Privacy Policy | Terms of Service
+        </p>
+    </footer>
+</body>
+</html>
