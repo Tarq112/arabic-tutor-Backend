@@ -351,7 +351,7 @@
 
     <script>
         // Configuration
-        const BACKEND_URL = 'https://arabic-tutor-backend-6stj.onrender.com'; // Change this to your deployed URL later
+        const BACKEND_URL = 'https://arabic-tutor-backend-6stj.onrender.com'; // Your live backend
         
         // State
         let messages = [];
@@ -446,6 +446,18 @@ Current topic: ${lessonTopics[currentTopic].title}`
             
             if (!messageText || isLoading) return;
             
+            // Get or ask for user email
+            let userEmail = localStorage.getItem('userEmail');
+            if (!userEmail) {
+                userEmail = prompt("Enter your email to start learning (for tracking your free messages):");
+                if (userEmail && userEmail.includes('@')) {
+                    localStorage.setItem('userEmail', userEmail);
+                } else {
+                    alert('Please enter a valid email address');
+                    return;
+                }
+            }
+            
             // Add user message
             messages.push({ role: 'user', content: messageText });
             displayMessage('user', messageText);
@@ -464,7 +476,8 @@ Current topic: ${lessonTopics[currentTopic].title}`
                     body: JSON.stringify({
                         messages: messages,
                         system: getSystemPrompt(),
-                        max_tokens: 1024
+                        max_tokens: 1024,
+                        user_email: userEmail
                     })
                 });
                 
@@ -473,6 +486,14 @@ Current topic: ${lessonTopics[currentTopic].title}`
                 }
                 
                 const data = await response.json();
+                
+                // Check if upgrade is required
+                if (data.upgrade_required) {
+                    hideTyping();
+                    displayMessage('assistant', `${data.error}\n\n💳 Upgrade to Premium for just £9.99/month and get unlimited messages!\n\nContact: mohammed@example.com to upgrade.`);
+                    isLoading = false;
+                    return;
+                }
                 
                 if (!data.success) {
                     throw new Error(data.error || 'Unknown error');
