@@ -481,6 +481,42 @@ Current topic: ${lessonTopics[currentTopic].title}`
                     })
                 });
                 
+                // Check for 429 (rate limit) first
+                if (response.status === 429) {
+                    const data = await response.json();
+                    hideTyping();
+                    
+                    // Create upgrade button
+                    const upgradeMessage = document.createElement('div');
+                    upgradeMessage.className = 'message assistant';
+                    upgradeMessage.innerHTML = `
+                        <div class="message-content" style="max-width: 80%;">
+                            <p style="margin-bottom: 15px;">${data.error}</p>
+                            <p style="margin-bottom: 15px;">💳 <strong>Upgrade to Premium for just £9.99/month</strong> and get unlimited messages!</p>
+                            <button onclick="upgradeNow()" style="
+                                width: 100%;
+                                padding: 15px;
+                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                color: white;
+                                border: none;
+                                border-radius: 10px;
+                                font-size: 1.1em;
+                                font-weight: bold;
+                                cursor: pointer;
+                                margin-top: 10px;
+                            ">
+                                🚀 Upgrade to Premium Now
+                            </button>
+                        </div>
+                    `;
+                    
+                    document.getElementById('messages').appendChild(upgradeMessage);
+                    document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+                    
+                    isLoading = false;
+                    return;
+                }
+                
                 if (!response.ok) {
                     throw new Error(`Server error: ${response.status}`);
                 }
@@ -565,6 +601,51 @@ Current topic: ${lessonTopics[currentTopic].title}`
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessage();
+            }
+        }
+        
+        async function upgradeNow() {
+            // Get user email
+            const userEmail = localStorage.getItem('userEmail');
+            
+            if (!userEmail) {
+                alert('Please enter your email first');
+                return;
+            }
+            
+            try {
+                // Show loading
+                const button = event.target;
+                button.textContent = '⏳ Creating checkout session...';
+                button.disabled = true;
+                
+                // Call backend to create Stripe checkout session
+                const response = await fetch(`${BACKEND_URL}/api/create-checkout`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: userEmail,
+                        plan: 'premium'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.checkout_url) {
+                    // Redirect to Stripe checkout
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert('Error creating checkout session. Please try again or contact support.');
+                    button.textContent = '🚀 Upgrade to Premium Now';
+                    button.disabled = false;
+                }
+            } catch (error) {
+                console.error('Upgrade error:', error);
+                alert('Error: ' + error.message);
+                button.textContent = '🚀 Upgrade to Premium Now';
+                button.disabled = false;
             }
         }
         
